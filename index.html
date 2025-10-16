@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <p>[Antre@fedora ~]$ </p>
+    <p id="terminal_main">[Antre@fedora ~]$ </p>
+    <input onblur="this.focus()" autofocus id="terminal" onkeydown="test(event, this)" /> 
+    <p id="output"></p>
 </body>
+    <script src="index.js"></script>
 </html>

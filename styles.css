@@ -6,3 +6,16 @@ html{
      font-weight: 600;
      font-style: normal;
 }
+
+#terminal_main {
+    display: inline;
+}
+
+#terminal, #terminal:focus{
+    border: none;
+    background: none;
+    color: green; 
+    outline: none;
+    width: 80%;
+    
+}
