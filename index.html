@@ -10,9 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <p id="terminal_main">[Antre@fedora ~]$ </p>
-    <input onblur="this.focus()" autofocus id="terminal" onkeydown="test(event, this)" /> 
+    <p>Antre OS [Version 10.0.19045.6456]</p>
+    <p>(c) Antre. All rights reserved.</p>
+    <div id="terminal_container">
+    <p id="terminal_main">[Antre@antre ~]$ </p>
+    <input id="terminal" onkeydown="test(event, this)" /> 
     <p id="output"></p>
+    </div>
+
 </body>
     <script src="index.js"></script>
 </html>

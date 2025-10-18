@@ -5,6 +5,7 @@ html{
      font-optical-sizing: auto;
      font-weight: 600;
      font-style: normal;
+     font-size: 16px;
 }
 
 #terminal_main {
@@ -18,4 +19,32 @@ html{
     outline: none;
     width: 80%;
     
+}
+
+#terminal_container,
+#terminal_container * {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: green;
+    font-size: 16px;
+}
+.prompt_line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.prompt_text {
+    white-space: pre;
+}
+.terminal_input {
+    background: none;
+    border: none;
+    color: green;
+    outline: none;
+    flex: 1;
+}
+.output_line {
+    margin-left: 20px;
 }
