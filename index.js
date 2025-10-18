@@ -26,8 +26,10 @@ function outputline(text) {
 
 function handle(command, container, inputParent) {
   if (command === "clear") {
-    const lines = container.querySelectorAll(".prompt_line, .output_line");
-    lines.forEach(l => l.remove());
+    container.innerHTML = "";
+    const newPrompt = promptline();
+    container.appendChild(newPrompt);
+    newPrompt.querySelector("input").focus();
   } else if (commands[command]) {
     container.insertBefore(outputline(commands[command]), inputParent);
   } else if (command !== "") {
@@ -43,15 +45,18 @@ function test(e, el) {
     container.insertBefore(commandline(command), el.parentElement);
     handle(command, container, el.parentElement);
 
-    const newprompt = promptline();
-    container.replaceChild(newprompt, el.parentElement);
-    newprompt.querySelector("input").focus();
+    if (command !== "clear") {
+      const newprompt = promptline();
+      container.replaceChild(newprompt, el.parentElement);
+      newprompt.querySelector("input").focus();
+    }
   }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("terminal_container");
   container.innerHTML = "";
-  container.appendChild(promptline());
-  container.querySelector("input").focus();
+  const initialPrompt = promptline();
+  container.appendChild(initialPrompt);
+  initialPrompt.querySelector("input").focus();
 });
