@@ -1,6 +1,6 @@
 const commands = {
-  help: "Available commands: help, about, clear",
-  about: "made by Antoni Wrzesinski"
+  help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal",
+  about: "Your a cybersecurity agent getting a signals from a unknown source, your mission is to decipher the signals and handle them.",
 };
 
 function promptline() {
