@@ -33,13 +33,22 @@ function outputline(text) {
 }
 
 function scan(container, inputParent) {
-  var i = Math.floor(Math.random() * 2) + 1;
-  if (i == 1) {
-      container.insertBefore(outputline(binary["id03"]), inputParent);
-  } else if (i == 2) {
-      container.insertBefore(outputline(binary["id07"]), inputParent);
-  }
+    var i = Math.floor(Math.random() * 2) + 1;
+    if (i == 1) {
+        if (binary["id03"]) {
+            container.insertBefore(outputline(binary["id03"]), inputParent);
+        } else if (binary["id07"]) {
+            container.insertBefore(outputline(binary["id07"]), inputParent);
+        }
+    } else if (i == 2) {
+        if (binary["id07"]) {
+            container.insertBefore(outputline(binary["id07"]), inputParent);
+        } else if (binary["id03"]) {
+            container.insertBefore(outputline(binary["id03"]), inputParent);
+        }
+    }
 }
+
 
 function binaryAgent(str) {
   var binString = '';
@@ -101,6 +110,13 @@ Checksum  : ${result.checksum}
 RECOMMENDATION: ${recommendation}`;
 }
 
+
+function jam(id) {
+  delete binary[id];
+  return `Signal ID ${id} has been JAMMED successfully.`;
+}
+
+
 function handle(command, container, inputParent) {
   const parts = command.split(" ");
   const cmd = parts[0];
@@ -136,7 +152,15 @@ function handle(command, container, inputParent) {
       } else {
           container.insertBefore(outputline("Usage: analyze [token]"), inputParent);
        }
-   } else if (command !== "") {
+   } else if (cmd === "jam") {
+    if (args) {
+           const id = jam(args);
+           container.insertBefore(outputline(id), inputParent);
+      } else {
+          container.insertBefore(outputline("Usage: jam [id]"), inputParent);
+       }
+   }
+    else if (command !== "") {
     container.insertBefore(outputline(`Unknown command: ${command}`), inputParent);
   }
 }
