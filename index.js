@@ -80,8 +80,10 @@ function decodeToken(token) {
 function scan(container, inputParent) {
   const ids = Object.keys(binary);
   const count = Math.min(3, ids.length);
+  const availableIds = [...ids];
   for (let i = 0; i < count; i++) {
-    const id = ids[Math.floor(Math.random() * ids.length)];
+    const index = Math.floor(Math.random() * availableIds.length);
+    const id = availableIds.splice(index, 1)[0];
     container.insertBefore(outputline(binary[id]), inputParent);
   }
 }
