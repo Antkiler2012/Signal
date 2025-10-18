@@ -2,7 +2,8 @@ const commands = {
   help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal\nscan - Generates a new batch of signals and display their id and pattern.\ndecode_binary - decodes binary to text usage: decode_binary [binary]",
   about: "Your a cybersecurity agent getting a signals from a unknown source, your mission is to decipher the signals and handle them.",
   scan: "",
-  decode_binary: ""
+  decode_binary: "",
+  decode_ASCII: "",
 };
 
 const binary = {
@@ -49,22 +50,50 @@ function binaryAgent(str) {
    return binString;
 }
 
+function asciiToToken(payload) {
+    const sourceMatch = payload.match(/SRC(\d+)/);
+    if (!sourceMatch) return "Invalid payload format";
+    const key = parseInt(sourceMatch[1], 10);
+    let tokenHex = '';
+    for (let i = 0; i < payload.length; i++) {
+        tokenHex += ((payload.charCodeAt(i) ^ key).toString(16).padStart(2, '0'));
+    }
+    return sourceMatch[1].padStart(2, '0') + '-' + tokenHex;
+}
+
 function handle(command, container, inputParent) {
-  if (command === "clear") {
+  const parts = command.split(" ");
+  const cmd = parts[0];
+  const args = parts.slice(1).join(" "); 
+
+  if (cmd === "clear") {
     container.innerHTML = "";
     const newPrompt = promptline();
     container.appendChild(newPrompt);
     newPrompt.querySelector("input").focus();
-  } else if (commands[command]) {
-    container.insertBefore(outputline(commands[command]), inputParent);
-  } else if (command === "scan") {
+  } else if (commands[cmd]) {
+    container.insertBefore(outputline(commands[cmd]), inputParent);
+  } else if (cmd === "scan") {
     scan(container, inputParent);
-  } else if (command === "decode_binary") {
-    binaryAgent('01000001 01110010 01100101 01101110 00100111 01110100');
+  } else if (cmd === "decode_binary") {
+    if (args) {
+      const decoded = binaryAgent(args);
+      container.insertBefore(outputline(decoded), inputParent);
+    } else {
+      container.insertBefore(outputline("Usage: decode_binary [binary]"), inputParent);
+    }
+  } else if (cmd === "decode_ASCII") {
+    if (args) {
+        const token = asciiToToken(args);
+        container.insertBefore(outputline("Token: " + token), inputParent);
+    } else {
+        container.insertBefore(outputline("Usage: decode_ASCII [payload]"), inputParent);
+    }
   } else if (command !== "") {
     container.insertBefore(outputline(`Unknown command: ${command}`), inputParent);
   }
 }
+
 
 function test(e, el) {
   if (e.key === "Enter") {
