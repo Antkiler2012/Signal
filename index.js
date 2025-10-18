@@ -1,3 +1,4 @@
+// commands initialization/and uhm the help and about description
 const commands = {
   help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal\nscan - Generates a new batch of signals and display their id and pattern.\ndecode_binary - decodes binary to text usage: decode_binary [binary]\ndecode_ASCII - decodes ASCII payload to token usage: decode_ASCII [payload]\ntype - shows the type of a token usage: type [token]\nflags - shows flags of a token usage: flags [token]\nchecksum - shows checksum of a token usage: checksum [token]\npayload - shows payload of a token usage: payload [token]\nforward - forwards a signal usage: forward [token]\nverify - verifies checksum of a token usage: verify [token]",
   about: "Your a cybersecurity agent getting signals from an unknown source, your mission is to decipher and handle them.",
@@ -8,10 +9,12 @@ const commands = {
   verify: ""
 };
 
+// convert ascii to binary
 function asciiToBinary(str) {
   return str.split('').map(c => c.charCodeAt(0).toString(2).padStart(8,'0')).join(' ');
 }
 
+// signals, converted to binary with asciiToBinary function
 const binary = {
   id03: "id03 = " + asciiToBinary("SRC3|T2|L5|F0|PHELLO|C74"),
   id07: "id07 = " + asciiToBinary("SRC7|T1|L0|F0|P|C00"),
@@ -21,13 +24,14 @@ const binary = {
   id25: "id25 = " + asciiToBinary("SRC25|T9|L1|F8|P1|CADM")
 };
 
+// makes new prompt line
 function promptline() {
   const prompt = document.createElement("div");
   prompt.className = "prompt_line";
   prompt.innerHTML = `<span class="prompt_text">[Antre@antre ~]$</span> <input class="terminal_input" onkeydown="test(event, this)" autocomplete="off" />`;
   return prompt;
 }
-
+// makes new command line
 function commandline(command) {
   const line = document.createElement("div");
   line.className = "prompt_line";
@@ -35,6 +39,7 @@ function commandline(command) {
   return line;
 }
 
+// makes new output line
 function outputline(text) {
   const out = document.createElement("div");
   out.className = "output_line";
@@ -42,6 +47,7 @@ function outputline(text) {
   return out;
 }
 
+// decodes token
 function decodeToken(token) {
   const parts = token.split('-');
   if (parts.length !== 2) return null;
@@ -55,6 +61,7 @@ function decodeToken(token) {
   return ascii;
 }
 
+// scans incomming signals
 function scan(container, inputParent) {
   const ids = Object.keys(binary);
   const count = Math.min(3, ids.length);
@@ -64,12 +71,14 @@ function scan(container, inputParent) {
   }
 }
 
+// convert binary to ascii command
 function binaryAgent(str) {
   let binString = "";
   str.split(" ").map(bin => binString += String.fromCharCode(parseInt(bin, 2)));
   return binString;
 }
 
+// convert ascii to token command
 function asciiToToken(payload) {
   const sourceMatch = payload.match(/SRC(\d+)/);
   if (!sourceMatch) return "Invalid payload format";
@@ -81,6 +90,7 @@ function asciiToToken(payload) {
   return sourceMatch[1].padStart(2,"0") + "-" + tokenHex;
 }
 
+// take fields from token
 function getFields(token) {
   const ascii = decodeToken(token);
   if (!ascii) return null;
@@ -96,6 +106,7 @@ function getFields(token) {
   return obj;
 }
 
+// get signal type command
 function signalType(token) {
   const f = getFields(token);
   if (!f) return "Invalid token";
@@ -103,6 +114,7 @@ function signalType(token) {
   return `Type: ${f.type} (${map[f.type] || "Unknown"})`;
 }
 
+// get flags info command
 function flagsInfo(token) {
   const f = getFields(token);
   if (!f) return "Invalid token";
@@ -110,12 +122,14 @@ function flagsInfo(token) {
   return `Flags: F${f.flags} (${desc[f.flags] || "Unknown"})`;
 }
 
+// get checksum info command
 function checksumInfo(token) {
   const f = getFields(token);
   if (!f) return "Invalid token";
   return `Checksum: ${f.checksum}`;
 }
 
+// get payload info command
 function payloadInfo(token) {
   const f = getFields(token);
   if (!f) return "Invalid token";
@@ -124,13 +138,14 @@ function payloadInfo(token) {
 
 const gameState = { jammed: new Set(), forwarded: new Set() };
 
+// resolve id from argument
 function resolveId(arg) {
   if (!arg) return null;
   if (arg.startsWith("id")) return arg;
   const match = arg.match(/^(\d+)-/);
   return match ? "id" + match[1].padStart(2, "0") : null;
 }
-
+// jam signal command
 function jam(id) {
   const bin = binary[id];
   if (!bin) return "Invalid ID";
@@ -148,7 +163,7 @@ function jam(id) {
   console.log(result);
   return result;
 }
-
+// forward signal command
 function forward(id) {
   const bin = binary[id];
   if (!bin) return "Invalid ID";
@@ -165,7 +180,7 @@ function forward(id) {
   console.log(result);
   return result;
 }
-
+// verify checksum command
 function verify(token) {
   const f = getFields(token);
   if (!f || !f.payload) return "Invalid token or missing payload";
@@ -175,7 +190,7 @@ function verify(token) {
   return hex === f.checksum ? "Checksum valid" : "Checksum invalid";
 }
 
-
+// main stuff that handels command input
 function handle(command, container, inputParent) {
   const parts = command.split(" ");
   const cmd = parts[0];
@@ -217,7 +232,7 @@ function handle(command, container, inputParent) {
     else container.insertBefore(outputline("Usage: verify [token]"),inputParent);
   } else if(command!=="") container.insertBefore(outputline(`Unknown command: ${command}`),inputParent);
 }
-
+// basicly just checks if the enter key is pressed if it is it runs the handle function
 function test(e,el) {
   if(e.key==="Enter") {
     const command = el.value.trim();
@@ -232,6 +247,7 @@ function test(e,el) {
   }
 }
 
+// setup
 window.addEventListener("DOMContentLoaded",()=>{
   const container = document.getElementById("terminal_container");
   container.innerHTML = "";
