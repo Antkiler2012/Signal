@@ -1,5 +1,5 @@
 const commands = {
-  help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal\nscan - Generates a new batch of signals and display their id and pattern.\ndecode_binary - decodes binary to text usage: decode_binary [binary]",
+  help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal\nscan - Generates a new batch of signals and display their id and pattern.\ndecode_binary - decodes binary to text usage: decode_binary [binary]\ndecode_ASCII - decodes ASCII payload to token usage: decode_ASCII [payload]\nanalyze - analyzes a given token usage: analyze [token]",
   about: "Your a cybersecurity agent getting a signals from a unknown source, your mission is to decipher the signals and handle them.",
   scan: "",
   decode_binary: "",
