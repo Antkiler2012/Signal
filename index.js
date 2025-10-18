@@ -161,7 +161,7 @@ function forward(id) {
   if (f.type == 1 || f.type == 2 || f.type == 3 || f.type == 9)
     result += " Good choice! Signal forwarded.";
   else result += " Bad choice! Forwarding malicious signal!";
-
+  delete binary[id];
   console.log(result);
   return result;
 }
