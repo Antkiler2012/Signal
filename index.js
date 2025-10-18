@@ -61,6 +61,46 @@ function asciiToToken(payload) {
     return sourceMatch[1].padStart(2, '0') + '-' + tokenHex;
 }
 
+function analyzeToken(token) {
+    const parts = token.split('-');
+    if (parts.length !== 2) return "Invalid token format";
+    const key = parseInt(parts[0], 10);
+    const hexPayload = parts[1];
+    let ascii = '';
+    for (let i = 0; i < hexPayload.length; i += 2) {
+        const byte = parseInt(hexPayload.slice(i, i + 2), 16);
+        ascii += String.fromCharCode(byte ^ key);
+    }
+    const fields = ascii.split('|');
+    const result = {};
+    fields.forEach(f => {
+        if (f.startsWith('SRC')) result.source = f.slice(3);
+        else if (f.startsWith('T')) result.type = f.slice(1);
+        else if (f.startsWith('L')) result.length = f.slice(1);
+        else if (f.startsWith('F')) result.flags = f.slice(1);
+        else if (f.startsWith('P')) result.payload = f.slice(1);
+        else if (f.startsWith('C')) result.checksum = f.slice(1);
+    });
+    let typeName = "Unknown";
+    switch(result.type) {
+        case "1": typeName = "Ping"; break;
+        case "2": typeName = "Data"; break;
+        case "3": typeName = "Control"; break;
+        case "4": typeName = "Malicious"; break;
+        case "9": typeName = "Admin Beacon"; break;
+    }
+
+    let recommendation = (result.type === "4") ? "JAM" : "FORWARD";
+
+    return `Signal Analysis — ID: ${result.source}
+Type      : ${result.type} (${typeName})
+Payload L : ${result.length} bytes
+Flags     : ${result.flags}
+Payload   : "${result.payload}"
+Checksum  : ${result.checksum}
+RECOMMENDATION: ${recommendation}`;
+}
+
 function handle(command, container, inputParent) {
   const parts = command.split(" ");
   const cmd = parts[0];
@@ -89,7 +129,14 @@ function handle(command, container, inputParent) {
     } else {
         container.insertBefore(outputline("Usage: decode_ASCII [payload]"), inputParent);
     }
-  } else if (command !== "") {
+  } else if (cmd === "analyze") {
+      if (args) {
+           const output = analyzeToken(args);
+           container.insertBefore(outputline(output), inputParent);
+      } else {
+          container.insertBefore(outputline("Usage: analyze [token]"), inputParent);
+       }
+   } else if (command !== "") {
     container.insertBefore(outputline(`Unknown command: ${command}`), inputParent);
   }
 }
