@@ -1,3 +1,4 @@
+// vars initialization
 var score = 0;
 var name_storage = localStorage.getItem("name");
 var name = JSON.parse(name_storage).myContent;
@@ -22,9 +23,9 @@ function asciiToBinary(str) {
     .map((c) => c.charCodeAt(0).toString(2).padStart(8, "0"))
     .join(" ");
 }
-
+// time var
 var time = 60;
-
+// timer
 var timer = setInterval(() => {
   time -= 1;
   document.getElementsByClassName("time")[0].textContent = "Time left: " + time;
@@ -314,14 +315,14 @@ function handle(command, container, inputParent) {
         outputline("Usage: decode_ASCII [ascii]"),
         inputParent
       );
-  } else if (cmd === "type") {
+  } else if (cmd === "type") { // type command
     if (args) container.insertBefore(outputline(signalType(args)), inputParent);
     else container.insertBefore(outputline("Usage: type [token]"), inputParent);
-  } else if (cmd === "flags") {
+  } else if (cmd === "flags") { // flags command
     if (args) container.insertBefore(outputline(flagsInfo(args)), inputParent);
     else
       container.insertBefore(outputline("Usage: flags [token]"), inputParent);
-  } else if (cmd === "checksum") {
+  } else if (cmd === "checksum") { // checksum command
     if (args)
       container.insertBefore(outputline(checksumInfo(args)), inputParent);
     else
@@ -329,30 +330,30 @@ function handle(command, container, inputParent) {
         outputline("Usage: checksum [token]"),
         inputParent
       );
-  } else if (cmd === "payload") {
+  } else if (cmd === "payload") { // payload command
     if (args)
       container.insertBefore(outputline(payloadInfo(args)), inputParent);
     else
       container.insertBefore(outputline("Usage: payload [token]"), inputParent);
-  } else if (cmd === "jam") {
+  } else if (cmd === "jam") { // jam command
     if (args) container.insertBefore(outputline(jam(args)), inputParent);
     else container.insertBefore(outputline("Usage: jam [id]"), inputParent);
-  } else if (cmd === "forward") {
+  } else if (cmd === "forward") { // forward commaand
     if (args) container.insertBefore(outputline(forward(args)), inputParent);
     else
       container.insertBefore(outputline("Usage: forward [token]"), inputParent);
-  } else if (cmd === "verify") {
+  } else if (cmd === "verify") { // verify command
     if (args) container.insertBefore(outputline(verify(args)), inputParent);
     else
       container.insertBefore(outputline("Usage: verify [token]"), inputParent);
-  } else if (command === "whoami") {
+  } else if (command === "whoami") { // whoami command
     container.insertBefore(outputline(name), inputParent);
-  } else if (command === "date") {
+  } else if (command === "date") { // date command
     const date = new Date();
     container.insertBefore(outputline(date), inputParent);
-  } else if (command === "history") {
+  } else if (command === "history") { // history command
     container.insertBefore(outputline(history.join(""), true), inputParent);
-  } else if (command === "exit") {
+  } else if (command === "exit") { // exit command
         window.location.href = "index.html";
   } 
   else if (command !== "")
