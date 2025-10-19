@@ -308,6 +308,9 @@ function handle(command, container, inputParent) {
       container.insertBefore(outputline("Usage: verify [token]"), inputParent);
   } else if (command === "whoami") {
     container.insertBefore(outputline(name), inputParent);
+  } else if (command === "date") {
+    const date = new Date()
+    container.insertBefore(outputline(date), inputParent)
   }
   else if (command !== "")
     container.insertBefore(
