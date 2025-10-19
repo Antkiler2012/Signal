@@ -316,18 +316,19 @@ function handle(command, container, inputParent) {
   const parts = command.split(" ");
   const cmd = parts[0];
   const args = parts.slice(1).join(" ");
-  if (cmd === "clear") {
-    container.innerHTML = "";
-    const newPrompt = promptline();
-    container.appendChild(newPrompt);
-    newPrompt.querySelector("input").focus();
-  } else if (commands[cmd]) {
-    if (cmd === "help") {
-      console.log("help");
-      help_tutorial();
-      container.insertBefore(outputline(commands[cmd], true), inputParent);
-    }
+if (cmd === "clear") {
+  container.innerHTML = "";
+  const newPrompt = promptline();
+  container.appendChild(newPrompt);
+  newPrompt.querySelector("input").focus();
+} else if (commands[cmd]) {
+  if (cmd === "help") {
+    console.log("help");
+    help_tutorial();
     container.insertBefore(outputline(commands[cmd], true), inputParent);
+  } else {
+    container.insertBefore(outputline(commands[cmd], true), inputParent);
+  }
   } else if (cmd === "scan") scan(container, inputParent);
   else if (cmd === "decode_binary") {
     if (args)
