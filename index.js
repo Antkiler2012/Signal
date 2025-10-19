@@ -248,14 +248,14 @@ function handle(command, container, inputParent) {
   const parts = command.split(" ");
   const cmd = parts[0];
   const args = parts.slice(1).join(" ");
-  if (cmd === "clear") {
+  if (command === "clear") {
     container.innerHTML = "";
     const newPrompt = promptline();
     container.appendChild(newPrompt);
     newPrompt.querySelector("input").focus();
   } else if (commands[cmd]) {
     container.insertBefore(outputline(commands[cmd], true), inputParent);
-  } else if (cmd === "scan") scan(container, inputParent);
+  } else if (command === "scan") scan(container, inputParent);
   else if (cmd === "decode_binary") {
     if (args)
       container.insertBefore(outputline(binaryAgent(args)), inputParent);
@@ -306,9 +306,9 @@ function handle(command, container, inputParent) {
     if (args) container.insertBefore(outputline(verify(args)), inputParent);
     else
       container.insertBefore(outputline("Usage: verify [token]"), inputParent);
-  } else if (cmd === "whoami") {
+  } else if (command === "whoami") {
     container.insertBefore(outputline(name), inputParent);
-  } 
+  }
   else if (command !== "")
     container.insertBefore(
       outputline(`Unknown command: ${command}`),
