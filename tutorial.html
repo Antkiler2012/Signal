@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dark Signal - Tutorial</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <p>Antre OS [Version 10.0.19045.6456]</p>
+    <p>(c) Antre. All rights reserved.</p>
+    <p class="first">Welcome to dark signal</p>
+    <p class="second">
+      Your a cybersecurity agent getting signals from an unknown source, your
+      mission
+    </p>
+    <p class="third">is to decipher and handle them.</p>
+    <p class="four">lets start by typing [help] in the command prompt</p>
+    <div id="terminal_container">
+      <p id="terminal_main">[Antre@antre ~]$</p>
+      <input id="terminal" onkeydown="test(event, this)" />
+      <p id="output"></p>
+    </div>
+  </body>
+  <script src="index.js"></script>
+  <script>
+    const second = document.querySelector(".second");
+    const third = document.querySelector(".third");
+    const fourth = document.querySelector(".four");
+
+    second.style.visibility = "hidden";
+    third.style.visibility = "hidden";
+    fourth.style.visibility = "hidden";
+
+    setTimeout(() => {
+      second.style.visibility = "visible";
+    }, 3500);
+
+    setTimeout(() => {
+      third.style.visibility = "visible";
+    }, 7500);
+    setTimeout(() => {
+      fourth.style.visibility = "visible";
+    }, 11500);
+  </script>
+</html>

@@ -98,3 +98,54 @@ html{
     padding: 10px 20px;
     cursor: pointer;
 }
+.first, .second, .third, .four {
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  width: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.first {
+  border-right: .15em solid green;
+  animation:
+    typing1 3.5s steps(22, end) forwards,
+    blink-caret 3.5s steps(1, end) 1 forwards;
+}
+
+.second {
+  border-right: .15em solid green;
+  animation:
+    typing2 4s steps(60, end) forwards,
+    blink-caret 4s steps(1, end) 1 forwards;
+  animation-delay: 3.5s;
+}
+
+.third {
+  border-right: .15em solid green;
+  animation:
+    typing3 2.5s steps(25, end) forwards,
+    blink-caret 2.5s steps(1, end) 1 forwards;
+  animation-delay: 7.5s;
+}
+
+
+.four {
+  border-right: .15em solid green;
+  animation:
+    typing4 2.5s steps(25, end) forwards,
+    blink-caret 2.5s steps(1, end) 1 forwards;
+  animation-delay: 11.50s;
+}
+
+@keyframes typing1 { from { width: 0ch; } to { width: 22ch; } }
+@keyframes typing2 { from { width: 0ch; } to { width: 72ch; } }
+@keyframes typing3 { from { width: 0ch; } to { width: 27ch; } }
+@keyframes typing4 { from { width: 0ch; } to { width: 45ch; } }
+
+
+@keyframes blink-caret {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: green; }
+}
