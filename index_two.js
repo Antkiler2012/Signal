@@ -5,7 +5,7 @@ var name = JSON.parse(name_storage).myContent;
 const history = [];
 // commands initialization/and uhm the help and about description
 const commands = {
-  help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal\nscan - Generates a new batch of signals and display their id and pattern.\ndecode_binary - decodes binary to text usage: decode_binary [binary]\ndecode_ASCII - decodes ASCII payload to token usage: decode_ASCII [payload]\ntype - shows the type of a token usage: type [token]\nflags - shows flags of a token usage: flags [token]\nchecksum - shows checksum of a token usage: checksum [token]\npayload - shows payload of a token usage: payload [token]\nforward - forwards a signal usage: forward [token]\njam - jams signal usage: jam[id]\nverify - verifies checksum of a token usage: verify [token]\ndate - shows current date usage: date\nhistory - shows your command prompts history usage: history\nwhoami - shows your name usage: whoami\nexit - exits to main menu usage: exit",
+   help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal\nscan - Generates a new batch of signals and display their id and pattern.\ndecode_binary - decodes binary to text usage: decode_binary [binary]\ndecode_ASCII - decodes ASCII payload to token usage: decode_ASCII [payload]\ntype - shows the type of a token usage: type [token]\nflags - shows flags of a token usage: flags [token]\nchecksum - shows checksum of a token usage: checksum [token]\npayload - shows payload of a token usage: payload [token]\nforward - forwards a signal usage: forward [token]\njam - jams signal usage: jam[id]\nverify - verifies checksum of a token usage: verify [token]\ndate - shows current date usage: date\nhistory - shows your command prompts history usage: history\nwhoami - shows your name usage: whoami\nexit - exits to main menu usage: exit\nls - shows folders/files in current directory usage: ls\n nano - shows content of a file usage: nano [filename]",
   about:
     "Your a cybersecurity agent getting signals from an unknown source, your mission is to decipher and handle them.",
   scan: "",
@@ -22,19 +22,6 @@ function asciiToBinary(str) {
     .map((c) => c.charCodeAt(0).toString(2).padStart(8, "0"))
     .join(" ");
 }
-
-var time = 60;
-
-var timer = setInterval(() => {
-  time -= 1;
-  document.getElementsByClassName("time")[0].textContent = "Time left: " + time;
-
-  if (time <= 0) {
-    console.log("done")
-    localStorage.setItem("score", JSON.stringify({ myContent: score }));
-    window.location.href = "done.html";
-  }
-}, 1000);
 
 // signals, converted to binary with asciiToBinary function
 const binary = {
@@ -354,7 +341,17 @@ function handle(command, container, inputParent) {
     container.insertBefore(outputline(history.join(""), true), inputParent);
   } else if (command === "exit") {
         window.location.href = "index.html";
-  } 
+  } else if (command === "ls") {
+    container.insertBefore(outputline("siege_week_10_theme.txt"), inputParent)
+  } else if (command === "nano siege_week_10_theme.txt") {
+    container.insertBefore(outputline("jk"), inputParent)
+  } else if (cmd === "sudo") {
+    container.insertBefore(outputline("Nice try, agent. Root privileges are restricted by HQ."), inputParent)
+  } else if (cmd === "cat") {
+    container.insertBefore(outputline("Meow! use nano"), inputParent)
+  } else if (command === "hello") {
+    container.insertBefore(outputline("Hello, agent, your not soupesed to talk to terminals."))
+  }
   else if (command !== "")
     container.insertBefore(
       outputline(`Unknown command: ${command}`),
