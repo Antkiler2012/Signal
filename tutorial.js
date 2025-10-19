@@ -1,3 +1,4 @@
+// vars initilizataion
 var score = 0;
 var help_tutorial_done = false;
 var scan_tutorial_done = false;
@@ -245,7 +246,9 @@ function verify(token) {
   const hex = (sum % 256).toString(16).toUpperCase().padStart(2, "0");
   return hex === f.checksum ? "Checksum valid" : "Checksum invalid";
 }
+// TUTORIAL STUFF
 
+// first thing that shows up after you type help
 function help_tutorial() {
   if (help_tutorial_done) return;
   help_tutorial_done = true;
@@ -260,7 +263,7 @@ function help_tutorial() {
   document.getElementById("body").appendChild(para);
   para.style.animation =
     "typing5 3s steps(61, end) forwards, blink-caret 3s steps(1, end) 1 forwards";
-
+  // second thing that shows after you type help
   para.addEventListener("animationend", function handler(e) {
     if (e.animationName === "typing5") {
       const paraTwo = document.createElement("p");
@@ -279,7 +282,7 @@ function help_tutorial() {
     }
   });
 }
-
+// first thing that shows up after you type scan
 function scan_tutorial() {
   if (scan_tutorial_done) return;
   scan_tutorial_done = true;
@@ -296,7 +299,7 @@ function scan_tutorial() {
   para.style.animation =
     "typing7 5s steps(140, end) forwards, blink-caret 5s steps(1, end) 1 forwards";
 }
-
+// first thing that shows after you decode binary
 function decode_binary_tutorial() {
   if (decode_binary_tutorial_done) return;
   decode_binary_tutorial_done = true;
@@ -313,7 +316,7 @@ function decode_binary_tutorial() {
   para.style.animation =
     "typing8 5s steps(125, end) forwards, blink-caret 5s steps(1, end) 1 forwards";
 }
-
+// first thing that shows after you decode ASCII
 function decode_ASCII_tutorial() {
   if (decode_ASCII_tutorial_done) return;
   decode_ASCII_tutorial_done = true;
@@ -329,7 +332,7 @@ function decode_ASCII_tutorial() {
   document.getElementById("body").appendChild(para);
   para.style.animation =
     "typing9 5s steps(129, end) forwards, blink-caret 5s steps(1, end) 1 forwards";
-
+  // second thing that shows after you decode ASCII
   para.addEventListener("animationend", function handler(e) {
     if (e.animationName === "typing9") {
       const paraTwo = document.createElement("p");
@@ -346,7 +349,7 @@ function decode_ASCII_tutorial() {
         "typing10 7s steps(125, end) forwards, blink-caret 7s steps(1, end) 1 forwards";
 
       para.removeEventListener("animationend", handler);
-
+      // third thing that shows after you decode ASCII
       paraTwo.addEventListener("animationend", function handler2(e) {
         if (e.animationName === "typing10") {
           const paraThree = document.createElement("p");
@@ -388,15 +391,15 @@ function handle(command, container, inputParent) {
     container.appendChild(newPrompt);
     newPrompt.querySelector("input").focus();
   } else if (commands[cmd]) {
-    if (cmd === "help") {
+    if (cmd === "help") { // help command
       console.log("help");
       help_tutorial();
       container.insertBefore(outputline(commands[cmd], true), inputParent);
     } else {
       container.insertBefore(outputline(commands[cmd], true), inputParent);
     }
-  } else if (command === "scan") scan(container, inputParent);
-  else if (cmd === "decode_binary") {
+  } else if (command === "scan") scan(container, inputParent); // scan command
+  else if (cmd === "decode_binary") { // decode binary command
     if (args)
       container.insertBefore(outputline(binaryAgent(args)), inputParent);
     else
@@ -404,7 +407,7 @@ function handle(command, container, inputParent) {
         outputline("Usage: decode_binary [binary]"),
         inputParent
       );
-  } else if (cmd === "decode_ASCII") {
+  } else if (cmd === "decode_ASCII") { // decode_ASCII command
     if (args)
       container.insertBefore(
         outputline("Token: " + asciiToToken(args)),
@@ -415,14 +418,14 @@ function handle(command, container, inputParent) {
         outputline("Usage: decode_ASCII [ascii]"),
         inputParent
       );
-  } else if (cmd === "type") {
+  } else if (cmd === "type") { // type command
     if (args) container.insertBefore(outputline(signalType(args)), inputParent);
     else container.insertBefore(outputline("Usage: type [token]"), inputParent);
-  } else if (cmd === "flags") {
+  } else if (cmd === "flags") { // flags command
     if (args) container.insertBefore(outputline(flagsInfo(args)), inputParent);
     else
       container.insertBefore(outputline("Usage: flags [token]"), inputParent);
-  } else if (cmd === "checksum") {
+  } else if (cmd === "checksum") { // checksum
     if (args)
       container.insertBefore(outputline(checksumInfo(args)), inputParent);
     else
@@ -430,24 +433,24 @@ function handle(command, container, inputParent) {
         outputline("Usage: checksum [token]"),
         inputParent
       );
-  } else if (cmd === "payload") {
+  } else if (cmd === "payload") { // payload
     if (args)
       container.insertBefore(outputline(payloadInfo(args)), inputParent);
     else
       container.insertBefore(outputline("Usage: payload [token]"), inputParent);
-  } else if (cmd === "jam") {
+  } else if (cmd === "jam") { // jam command
     if (args) container.insertBefore(outputline(jam(args)), inputParent);
     else container.insertBefore(outputline("Usage: jam [id]"), inputParent);
-  } else if (cmd === "forward") {
+  } else if (cmd === "forward") { // forward command
     if (args) container.insertBefore(outputline(forward(args)), inputParent);
     else
       container.insertBefore(outputline("Usage: forward [token]"), inputParent);
-  } else if (cmd === "verify") {
+  } else if (cmd === "verify") { // verify command
     if (args) container.insertBefore(outputline(verify(args)), inputParent);
     else
       container.insertBefore(outputline("Usage: verify [token]"), inputParent);
-  } else if (command === "exit") {
-      window.location.href = "index.html";
+  } else if (command === "exit") { // exit command
+    window.location.href = "index.html";
   } else if (command !== "")
     container.insertBefore(
       outputline(`Unknown command: ${command}`),

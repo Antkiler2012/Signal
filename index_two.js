@@ -1,3 +1,5 @@
+// free mode (no timer)
+// var initilazation
 var score = 0;
 var name_storage = localStorage.getItem("name");
 var name = JSON.parse(name_storage).myContent;
