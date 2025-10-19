@@ -1,5 +1,6 @@
 var score = 0;
-
+var name_storage = localStorage.getItem("name");
+var name = JSON.parse(name_storage).myContent;
 // commands initialization/and uhm the help and about description
 const commands = {
   help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal\nscan - Generates a new batch of signals and display their id and pattern.\ndecode_binary - decodes binary to text usage: decode_binary [binary]\ndecode_ASCII - decodes ASCII payload to token usage: decode_ASCII [payload]\ntype - shows the type of a token usage: type [token]\nflags - shows flags of a token usage: flags [token]\nchecksum - shows checksum of a token usage: checksum [token]\npayload - shows payload of a token usage: payload [token]\nforward - forwards a signal usage: forward [token]\njam - jams signal usage: jam[id]\nverify - verifies checksum of a token usage: verify [token]",
@@ -11,16 +12,6 @@ const commands = {
   forward: "",
   verify: "",
 };
-
-window.addEventListener("DOMContentLoaded", () => {
-  const name_storage = localStorage.getItem("name");
-  const name = JSON.parse(name_storage).myContent;
-  console.log(name)
-  }
-);
-
-
-
 
 // convert ascii to binary
 function asciiToBinary(str) {
@@ -44,14 +35,14 @@ const binary = {
 function promptline() {
   const prompt = document.createElement("div");
   prompt.className = "prompt_line";
-  prompt.innerHTML = `<span class="prompt_text">[Antre@antre ~]$</span> <input class="terminal_input" onkeydown="test(event, this)" autocomplete="off" />`;
+  prompt.innerHTML = `<span class="prompt_text">[${name}@Antre]$</span> <input class="terminal_input" onkeydown="test(event, this)" autocomplete="off" />`;
   return prompt;
 }
 // makes new command line
 function commandline(command) {
   const line = document.createElement("div");
   line.className = "prompt_line";
-  line.innerHTML = `<span class="prompt_text">[Antre@antre ~]$</span> <span>${command}</span>`;
+  line.innerHTML = `<span class="prompt_text">[${name}@Antre ~]$</span> <span>${command}</span>`;
   return line;
 }
 
