@@ -42,14 +42,14 @@
 
     setTimeout(() => {
       second.style.visibility = "visible";
-    }, 3500);
+    }, 1500);
 
     setTimeout(() => {
       third.style.visibility = "visible";
-    }, 7500);
+    }, 5500);
     setTimeout(() => {
       fourth.style.visibility = "visible";
-    }, 11500);
+    }, 9000);
     const observer = new MutationObserver(function (mutations_list) {
       mutations_list.forEach(function (mutation) {
         mutation.addedNodes.forEach(function (added_node) {
@@ -62,8 +62,6 @@
                 "typing5 3s steps(40, end) forwards, " +
                 "blink-caret 3s steps(1, end) 1 forwards, " +
                 "typing6 3s steps(40, end) forwards 3s, " +
-                "blink-caret 3s steps(1, end) 1 forwards 3s" +
-                "typing7 3s steps(40, end) forwards 3s, " +
                 "blink-caret 3s steps(1, end) 1 forwards 3s";
             }
 

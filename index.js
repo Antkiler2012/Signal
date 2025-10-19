@@ -46,12 +46,22 @@ function commandline(command) {
 }
 
 // makes new output line
-function outputline(text) {
+function outputline(text, preserveNewlines = false) {
   const out = document.createElement("div");
   out.className = "output_line";
   out.textContent = text;
+
+  if (preserveNewlines) {
+    out.style.whiteSpace = "pre-wrap";
+  } else {
+    out.style.whiteSpace = "normal";
+    out.style.wordWrap = "break-word";
+    out.style.overflowWrap = "anywhere";
+  }
+
   return out;
 }
+
 
 // checks if player made it to the end
 function checkbinary() {
@@ -242,7 +252,7 @@ function handle(command, container, inputParent) {
     container.appendChild(newPrompt);
     newPrompt.querySelector("input").focus();
   } else if (commands[cmd]) {
-    container.insertBefore(outputline(commands[cmd]), inputParent);
+    container.insertBefore(outputline(commands[cmd], true), inputParent);
   } else if (cmd === "scan") scan(container, inputParent);
   else if (cmd === "decode_binary") {
     if (args)

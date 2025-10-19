@@ -27,6 +27,9 @@ html {
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
   color: green;
   font-size: 16px;
 }
@@ -105,7 +108,8 @@ html {
 .four,
 #five,
 #six,
-#seven {
+#seven ,
+#eight {
   overflow: hidden;
   white-space: nowrap;
   display: block;
@@ -116,94 +120,65 @@ html {
 
 .first {
   border-right: 0.15em solid green;
-  animation: typing1 3.5s steps(22, end) forwards,
-    blink-caret 3.5s steps(1, end) 1 forwards;
+  animation: typing1 1.5s steps(22, end) forwards,
+    blink-caret 0.7s step-end 1.5s forwards;
 }
 
 .second {
   border-right: 0.15em solid green;
-  animation: typing2 4s steps(60, end) forwards,
-    blink-caret 4s steps(1, end) 1 forwards;
-  animation-delay: 3.5s;
+  animation: typing2 4s steps(72, end) forwards,
+    blink-caret 0.7s step-end 5.5s forwards;
+  animation-delay: 1.5s;
 }
 
 .third {
   border-right: 0.15em solid green;
-  animation: typing3 2.5s steps(25, end) forwards,
-    blink-caret 2.5s steps(1, end) 1 forwards;
-  animation-delay: 7.5s;
+  animation: typing3 1s steps(27, end) forwards,
+    blink-caret 0.7s step-end 6.5s forwards;
+  animation-delay: 5.5s;
 }
 
 .four {
   border-right: 0.15em solid green;
-  animation: typing4 2.5s steps(25, end) forwards,
-    blink-caret 2.5s steps(1, end) 1 forwards;
-  animation-delay: 11.5s;
+  animation: typing4 1.5s steps(55, end) forwards,
+    blink-caret 0.7s step-end 10.5s forwards;
+  animation-delay: 9s;
 }
 
 @keyframes typing1 {
-  from {
-    width: 0ch;
-  }
-  to {
-    width: 22ch;
-  }
+  from { width: 0ch; }
+  to { width: 22ch; }
 }
 @keyframes typing2 {
-  from {
-    width: 0ch;
-  }
-  to {
-    width: 72ch;
-  }
+  from { width: 0ch; }
+  to { width: 72ch; }
 }
 @keyframes typing3 {
-  from {
-    width: 0ch;
-  }
-  to {
-    width: 27ch;
-  }
+  from { width: 0ch; }
+  to { width: 27ch; }
 }
 @keyframes typing4 {
-  from {
-    width: 0ch;
-  }
-  to {
-    width: 45ch;
-  }
+  from { width: 0ch; }
+  to { width: 55ch; }
 }
 @keyframes typing5 {
-  from {
-    width: 0ch;
-  }
-  to {
-    width: 45ch;
-  }
+  from { width: 0ch; }
+  to { width: 45ch; }
 }
 @keyframes typing6 {
-  from {
-    width: 0ch;
-  }
-  to {
-    width: 55ch;
-  }
+  from { width: 0ch; }
+  to { width: 55ch; }
 }
 @keyframes typing7 {
-  from {
-    width: 0ch;
-  }
-  to {
-    width: 125ch;
-  }
+  from { width: 0ch; }
+  to { width: 125ch; }
+}
+@keyframes typing8 {
+  from { width: 0ch; }
+  to { width: 125ch; }
 }
 
 @keyframes blink-caret {
-  0%,
-  100% {
-    border-color: transparent;
-  }
-  50% {
-    border-color: green;
-  }
+  0%, 100% { border-color: transparent; }
+  50% { border-color: green; }
 }

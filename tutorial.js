@@ -1,5 +1,7 @@
 var score = 0;
-
+var help_tutorial_done = false
+var scan_tutorial_done = false
+var decode_binary_tutorial_done = false
 // commands initialization/and uhm the help and about description
 const commands = {
   help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal\nscan - Generates a new batch of signals and display their id and pattern.\ndecode_binary - decodes binary to text usage: decode_binary [binary]\ndecode_ASCII - decodes ASCII payload to token usage: decode_ASCII [payload]\ntype - shows the type of a token usage: type [token]\nflags - shows flags of a token usage: flags [token]\nchecksum - shows checksum of a token usage: checksum [token]\npayload - shows payload of a token usage: payload [token]\nforward - forwards a signal usage: forward [token]\nverify - verifies checksum of a token usage: verify [token]",
@@ -46,12 +48,22 @@ function commandline(command) {
 }
 
 // makes new output line
-function outputline(text) {
+function outputline(text, preserveNewlines = false) {
   const out = document.createElement("div");
   out.className = "output_line";
   out.textContent = text;
+
+  if (preserveNewlines) {
+    out.style.whiteSpace = "pre-wrap";
+  } else {
+    out.style.whiteSpace = "normal";
+    out.style.wordWrap = "break-word";
+    out.style.overflowWrap = "anywhere";
+  }
+
   return out;
 }
+
 
 // checks if player made it to the end
 function checkbinary() {
@@ -91,6 +103,7 @@ function scan(container, inputParent) {
 
 // convert binary to ascii command
 function binaryAgent(str) {
+  decode_binary_tutorial();
   let binString = "";
   str
     .split(" ")
@@ -233,6 +246,8 @@ function verify(token) {
 }
 
 function help_tutorial() {
+  if (help_tutorial_done) return;
+  help_tutorial_done = true;
   const para = document.createElement("p");
   para.id = "five";
   para.textContent = "Great! here you can see all the available commands";
@@ -264,6 +279,8 @@ function help_tutorial() {
 }
 
 function scan_tutorial() {
+  if (scan_tutorial_done) return;
+  scan_tutorial_done = true;
   const para = document.createElement("p");
   para.id = "seven";
   para.textContent =
@@ -276,6 +293,22 @@ function scan_tutorial() {
   document.getElementById("body").appendChild(para);
   para.style.animation =
     "typing7 5s steps(60, end) forwards, blink-caret 5s steps(1, end) 1 forwards";
+}
+
+function decode_binary_tutorial() { 
+  if (decode_binary_tutorial_done) return;
+  decode_binary_tutorial_done = true;
+  const para = document.createElement("p");
+  para.id = "eight";
+  para.textContent = "Nice, now that we have the ascii payload, we need to conver it to a token using the [decode_ASCII] command followed by the ascii payload";
+  para.style.overflow = "hidden";
+  para.style.whiteSpace = "nowrap";
+  para.style.display = "block";
+  para.style.width = "0";
+  para.style.borderRight = ".15em solid green";
+  document.getElementById("body").appendChild(para);
+  para.style.animation =
+    "typing8 5s steps(60, end) forwards, blink-caret 5s steps(1, end) 1 forwards";
 }
 
 // main stuff that handels command input
@@ -292,9 +325,9 @@ function handle(command, container, inputParent) {
     if (cmd === "help") {
       console.log("help");
       help_tutorial();
-      container.insertBefore(outputline(commands[cmd]), inputParent);
+      container.insertBefore(outputline(commands[cmd], true), inputParent);
     }
-    container.insertBefore(outputline(commands[cmd]), inputParent);
+    container.insertBefore(outputline(commands[cmd], true), inputParent);
   } else if (cmd === "scan") scan(container, inputParent);
   else if (cmd === "decode_binary") {
     if (args)
