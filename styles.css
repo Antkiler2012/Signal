@@ -9,7 +9,7 @@ html {
 }
 
 #terminal_main {
-  display: inline;
+  display: block;
 }
 
 #terminal,
@@ -32,9 +32,9 @@ html {
   overflow-wrap: anywhere;
   color: green;
   font-size: 16px;
+   clear: both;
 }
 .prompt_line {
-  display: flex;
   align-items: center;
   gap: 6px;
 }
@@ -167,6 +167,12 @@ html {
   padding: 10px 20px;
   cursor: pointer;
   outline: none;
+}
+
+.time{
+    display: inline;
+    float: right;
+    font-size: 20px;
 }
 
 .first,
