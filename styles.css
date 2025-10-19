@@ -49,3 +49,20 @@ html{
     margin-left: 20px;
     white-space: pre;
 }
+
+.play, .play_main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    color: green;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+    border: 2px solid green;
+    padding: 10px 20px;
+    cursor: pointer;
+}
