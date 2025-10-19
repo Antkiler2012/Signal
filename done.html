@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Done</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1 id="h1">score =</h1>
+    <a href="index.html"><button class="main_menu">Main menu</button></a>
+  </body>
+  <script>
+    $(document).ready(function () {
+      const stored = localStorage.getItem("score");
+      if (stored) {
+        const score = JSON.parse(stored).myContent;
+        $("#h1").text("Thanks for playing, your score is " + score);
+      }
+
+      $(window).on("storage", (e) => {
+        if (!e.originalEvent.newValue) return;
+        const score = JSON.parse(e.originalEvent.newValue).myContent;
+        $("#h1").text("Thanks for playing, your score is " + score);
+      });
+    });
+  </script>
+</html>

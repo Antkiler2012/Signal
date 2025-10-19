@@ -100,8 +100,75 @@ html {
   font-style: normal;
   font-size: 100px;
   padding: 10px 20px;
+}
+
+#h1{
+      position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: green;
+  border: 2px solid green;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 50px;
+  padding: 10px 20px;
+}
+
+.main_menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 200%);
+  background-color: black;
+  color: green;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
+  border: 2px solid green;
+  padding: 10px 20px;
   cursor: pointer;
 }
+
+.play_name{
+      position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 350%);
+  background-color: black;
+  color: green;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
+  border: 2px solid green;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.name_input{
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 200%);
+  background-color: black;
+  color: green;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
+  border: 2px solid green;
+  padding: 10px 20px;
+  cursor: pointer;
+  outline: none;
+}
+
 .first,
 .second,
 .third,

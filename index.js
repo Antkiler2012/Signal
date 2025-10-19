@@ -12,6 +12,16 @@ const commands = {
   verify: "",
 };
 
+window.addEventListener("DOMContentLoaded", () => {
+  const name_storage = localStorage.getItem("name");
+  const name = JSON.parse(name_storage).myContent;
+  console.log(name)
+  }
+);
+
+
+
+
 // convert ascii to binary
 function asciiToBinary(str) {
   return str
@@ -62,13 +72,14 @@ function outputline(text, preserveNewlines = false) {
   return out;
 }
 
-
 // checks if player made it to the end
 function checkbinary() {
   const allEmpty = Object.values(binary).every((v) => !v);
   if (allEmpty) {
     console.log("done");
     console.log(score);
+    localStorage.setItem("score", JSON.stringify({ myContent: score }));
+    window.location.href = "done.html";
   }
 }
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Done</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .play_name:disabled {
+        color: rgb(22, 22, 22);
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="h1">Whats your name?</h1>
+    <input type="text" class="name_input" />
+    <button class="play_name" disabled onclick="play()">play</button>
+
+    <script>
+      const input = document.querySelector(".name_input");
+      const button = document.querySelector(".play_name");
+      input.addEventListener("input", () => {
+        button.disabled = input.value.trim().length === 0;
+      });
+
+      function play() {
+        const name = input.value.trim();
+        localStorage.setItem("name", JSON.stringify({ myContent: name }));
+        window.location.href = "terminal.html";
+      }
+    </script>
+  </body>
+</html>
