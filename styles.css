@@ -1,104 +1,111 @@
-html{
-    background-color: black;
-    color: green;
-    font-family: "Open Sans", sans-serif;
-     font-optical-sizing: auto;
-     font-weight: 600;
-     font-style: normal;
-     font-size: 16px;
+html {
+  background-color: black;
+  color: green;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
 }
 
 #terminal_main {
-    display: inline;
+  display: inline;
 }
 
-#terminal, #terminal:focus{
-    border: none;
-    background: none;
-    color: green; 
-    outline: none;
-    width: 80%;
-    
+#terminal,
+#terminal:focus {
+  border: none;
+  background: none;
+  color: green;
+  outline: none;
+  width: 80%;
 }
 
 #terminal_container,
 #terminal_container * {
-    font-family: "Open Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    color: green;
-    font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  color: green;
+  font-size: 16px;
 }
 .prompt_line {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 .prompt_text {
-    white-space: pre;
+  white-space: pre;
 }
 .terminal_input {
-    background: none;
-    border: none;
-    color: green;
-    outline: none;
-    flex: 1;
+  background: none;
+  border: none;
+  color: green;
+  outline: none;
+  flex: 1;
 }
 .output_line {
-    margin-left: 20px;
-    white-space: pre;
+  margin-left: 20px;
+  white-space: pre;
 }
 
-.play, .play_main {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: black;
-    color: green;
-    font-family: "Open Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 16px;
-    border: 2px solid green;
-    padding: 10px 20px;
-    cursor: pointer;
+.play,
+.play_main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: green;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
+  border: 2px solid green;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .tutorial {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 60%);
-    background-color: black;
-    color: green;
-    font-family: "Open Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 16px;
-    border: 2px solid green;
-    padding: 10px 20px;
-    cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 60%);
+  background-color: black;
+  color: green;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
+  border: 2px solid green;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 .title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -200%);
-    background-color: black;
-    color: green;
-    font-family: "Open Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 100px;
-    padding: 10px 20px;
-    cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -200%);
+  background-color: black;
+  color: green;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 100px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
-.first, .second, .third, .four, #five, #six {
+.first,
+.second,
+.third,
+.four,
+#five,
+#six,
+#seven {
   overflow: hidden;
   white-space: nowrap;
   display: block;
@@ -108,45 +115,95 @@ html{
 }
 
 .first {
-  border-right: .15em solid green;
-  animation:
-    typing1 3.5s steps(22, end) forwards,
+  border-right: 0.15em solid green;
+  animation: typing1 3.5s steps(22, end) forwards,
     blink-caret 3.5s steps(1, end) 1 forwards;
 }
 
 .second {
-  border-right: .15em solid green;
-  animation:
-    typing2 4s steps(60, end) forwards,
+  border-right: 0.15em solid green;
+  animation: typing2 4s steps(60, end) forwards,
     blink-caret 4s steps(1, end) 1 forwards;
   animation-delay: 3.5s;
 }
 
 .third {
-  border-right: .15em solid green;
-  animation:
-    typing3 2.5s steps(25, end) forwards,
+  border-right: 0.15em solid green;
+  animation: typing3 2.5s steps(25, end) forwards,
     blink-caret 2.5s steps(1, end) 1 forwards;
   animation-delay: 7.5s;
 }
 
-
 .four {
-  border-right: .15em solid green;
-  animation:
-    typing4 2.5s steps(25, end) forwards,
+  border-right: 0.15em solid green;
+  animation: typing4 2.5s steps(25, end) forwards,
     blink-caret 2.5s steps(1, end) 1 forwards;
-  animation-delay: 11.50s;
+  animation-delay: 11.5s;
 }
 
-@keyframes typing1 { from { width: 0ch; } to { width: 22ch; } }
-@keyframes typing2 { from { width: 0ch; } to { width: 72ch; } }
-@keyframes typing3 { from { width: 0ch; } to { width: 27ch; } }
-@keyframes typing4 { from { width: 0ch; } to { width: 45ch; } }
-@keyframes typing5 { from { width: 0ch; } to { width: 45ch; } }
-@keyframes typing6 { from { width: 0ch; } to { width: 55ch; } }
+@keyframes typing1 {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 22ch;
+  }
+}
+@keyframes typing2 {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 72ch;
+  }
+}
+@keyframes typing3 {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 27ch;
+  }
+}
+@keyframes typing4 {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 45ch;
+  }
+}
+@keyframes typing5 {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 45ch;
+  }
+}
+@keyframes typing6 {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 55ch;
+  }
+}
+@keyframes typing7 {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 125ch;
+  }
+}
 
 @keyframes blink-caret {
-  0%, 100% { border-color: transparent; }
-  50% { border-color: green; }
+  0%,
+  100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: green;
+  }
 }

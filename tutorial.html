@@ -21,7 +21,9 @@
       mission
     </p>
     <p class="third">is to decipher and handle them.</p>
-    <p class="four">lets start by typing the [help] command in the command prompt</p>
+    <p class="four">
+      lets start by typing the [help] command in the command prompt
+    </p>
     <div id="terminal_container">
       <p id="terminal_main">[Antre@antre ~]$</p>
       <input id="terminal" onkeydown="test(event, this)" />
@@ -55,14 +57,15 @@
             fourth.style.visibility = "visible";
 
             const element = document.getElementById("five");
-if (element) {
-  element.style.animation = 
-    "typing5 3s steps(40, end) forwards, " + 
-    "blink-caret 3s steps(1, end) 1 forwards, " +
-    "typing6 3s steps(40, end) forwards 3s, " +
-    "blink-caret 3s steps(1, end) 1 forwards 3s";
-}
-
+            if (element) {
+              element.style.animation =
+                "typing5 3s steps(40, end) forwards, " +
+                "blink-caret 3s steps(1, end) 1 forwards, " +
+                "typing6 3s steps(40, end) forwards 3s, " +
+                "blink-caret 3s steps(1, end) 1 forwards 3s" +
+                "typing7 3s steps(40, end) forwards 3s, " +
+                "blink-caret 3s steps(1, end) 1 forwards 3s";
+            }
 
             console.log("#child has been added");
             observer.disconnect();

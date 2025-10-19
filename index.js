@@ -209,11 +209,10 @@ function forward(id) {
   if (!f) return "Invalid token";
 
   let result = `FORWARD: ${id} | Type: ${f.type} | Action executed.`;
-  if (f.type == 1 || f.type == 2 || f.type == 3 || f.type == 9){
+  if (f.type == 1 || f.type == 2 || f.type == 3 || f.type == 9) {
     result += " Good choice! Signal forwarded.";
     score += 1;
-  }
-  else {
+  } else {
     result += " Bad choice! Forwarding malicious signal!";
     score -= 1;
   }

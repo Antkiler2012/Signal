@@ -78,6 +78,7 @@ function decodeToken(token) {
 
 // scans incomming signals
 function scan(container, inputParent) {
+  scan_tutorial();
   const ids = Object.keys(binary);
   const count = Math.min(3, ids.length);
   const availableIds = [...ids];
@@ -241,22 +242,40 @@ function help_tutorial() {
   para.style.width = "0";
   para.style.borderRight = ".15em solid green";
   document.getElementById("body").appendChild(para);
-  para.style.animation = "typing5 3s steps(40, end) forwards, blink-caret 3s steps(1, end) 1 forwards";
+  para.style.animation =
+    "typing5 3s steps(40, end) forwards, blink-caret 3s steps(1, end) 1 forwards";
   para.addEventListener("animationend", function handler(e) {
     if (e.animationName === "typing5") {
       const paraTwo = document.createElement("p");
       paraTwo.id = "six";
-      paraTwo.textContent = "to start run the [scan] command to see incoming signals";
+      paraTwo.textContent =
+        "to start run the [scan] command to see incoming signals";
       paraTwo.style.overflow = "hidden";
       paraTwo.style.whiteSpace = "nowrap";
       paraTwo.style.display = "block";
       paraTwo.style.width = "0";
       paraTwo.style.borderRight = ".15em solid green";
       document.getElementById("body").appendChild(paraTwo);
-      paraTwo.style.animation = "typing6 3s steps(40, end) forwards, blink-caret 3s steps(1, end) 1 forwards";
+      paraTwo.style.animation =
+        "typing6 3s steps(40, end) forwards, blink-caret 3s steps(1, end) 1 forwards";
       para.removeEventListener("animationend", handler);
     }
   });
+}
+
+function scan_tutorial() {
+  const para = document.createElement("p");
+  para.id = "seven";
+  para.textContent =
+    "now that you have scanned the signals, choose one signal and try to decode it using the [decode_binary] command followed by the binary data";
+  para.style.overflow = "hidden";
+  para.style.whiteSpace = "nowrap";
+  para.style.display = "block";
+  para.style.width = "0";
+  para.style.borderRight = ".15em solid green";
+  document.getElementById("body").appendChild(para);
+  para.style.animation =
+    "typing7 5s steps(60, end) forwards, blink-caret 5s steps(1, end) 1 forwards";
 }
 
 // main stuff that handels command input
