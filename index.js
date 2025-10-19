@@ -1,6 +1,8 @@
 var score = 0;
 var name_storage = localStorage.getItem("name");
 var name = JSON.parse(name_storage).myContent;
+
+const history = []
 // commands initialization/and uhm the help and about description
 const commands = {
   help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal\nscan - Generates a new batch of signals and display their id and pattern.\ndecode_binary - decodes binary to text usage: decode_binary [binary]\ndecode_ASCII - decodes ASCII payload to token usage: decode_ASCII [payload]\ntype - shows the type of a token usage: type [token]\nflags - shows flags of a token usage: flags [token]\nchecksum - shows checksum of a token usage: checksum [token]\npayload - shows payload of a token usage: payload [token]\nforward - forwards a signal usage: forward [token]\njam - jams signal usage: jam[id]\nverify - verifies checksum of a token usage: verify [token]",
@@ -311,8 +313,10 @@ function handle(command, container, inputParent) {
   } else if (command === "date") {
     const date = new Date()
     container.insertBefore(outputline(date), inputParent)
+  } else if (command === "history") {
+    container.insertBefore(outputline(history.join(""), true), inputParent)
   }
-  else if (command !== "")
+   else if (command !== "")
     container.insertBefore(
       outputline(`Unknown command: ${command}`),
       inputParent
@@ -324,6 +328,7 @@ function test(e, el) {
     const command = el.value.trim();
     const container = document.getElementById("terminal_container");
     container.insertBefore(commandline(command), el.parentElement);
+    history.push(command + "\n")
     handle(command, container, el.parentElement);
     if (command !== "clear") {
       const newprompt = promptline();
