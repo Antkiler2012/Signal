@@ -108,8 +108,11 @@ html {
 .four,
 #five,
 #six,
-#seven ,
-#eight {
+#seven,
+#eight,
+#nine,
+#ten,
+#eleven {
   overflow: hidden;
   white-space: nowrap;
   display: block;
@@ -146,39 +149,100 @@ html {
 }
 
 @keyframes typing1 {
-  from { width: 0ch; }
-  to { width: 22ch; }
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 22ch;
+  }
 }
 @keyframes typing2 {
-  from { width: 0ch; }
-  to { width: 72ch; }
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 72ch;
+  }
 }
 @keyframes typing3 {
-  from { width: 0ch; }
-  to { width: 27ch; }
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 27ch;
+  }
 }
 @keyframes typing4 {
-  from { width: 0ch; }
-  to { width: 55ch; }
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 55ch;
+  }
 }
 @keyframes typing5 {
-  from { width: 0ch; }
-  to { width: 45ch; }
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 61ch;
+  }
 }
 @keyframes typing6 {
-  from { width: 0ch; }
-  to { width: 55ch; }
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 57ch;
+  }
 }
 @keyframes typing7 {
-  from { width: 0ch; }
-  to { width: 125ch; }
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 140ch;
+  }
 }
 @keyframes typing8 {
-  from { width: 0ch; }
-  to { width: 125ch; }
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 125ch;
+  }
+}
+@keyframes typing9 {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 129ch;
+  }
+}
+@keyframes typing10 {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 172ch;
+  }
+}
+@keyframes typing11 {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 75ch;
+  }
 }
 
 @keyframes blink-caret {
-  0%, 100% { border-color: transparent; }
-  50% { border-color: green; }
+  0%,
+  100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: green;
+  }
 }

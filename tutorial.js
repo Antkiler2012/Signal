@@ -1,10 +1,11 @@
 var score = 0;
-var help_tutorial_done = false
-var scan_tutorial_done = false
-var decode_binary_tutorial_done = false
+var help_tutorial_done = false;
+var scan_tutorial_done = false;
+var decode_binary_tutorial_done = false;
+var decode_ASCII_tutorial_done = false;
 // commands initialization/and uhm the help and about description
 const commands = {
-  help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal\nscan - Generates a new batch of signals and display their id and pattern.\ndecode_binary - decodes binary to text usage: decode_binary [binary]\ndecode_ASCII - decodes ASCII payload to token usage: decode_ASCII [payload]\ntype - shows the type of a token usage: type [token]\nflags - shows flags of a token usage: flags [token]\nchecksum - shows checksum of a token usage: checksum [token]\npayload - shows payload of a token usage: payload [token]\nforward - forwards a signal usage: forward [token]\nverify - verifies checksum of a token usage: verify [token]",
+  help: "help - List available commands\nabout - Information about the mission\nclear - Clear the terminal\nscan - Generates a new batch of signals and display their id and pattern.\ndecode_binary - decodes binary to text usage: decode_binary [binary]\ndecode_ASCII - decodes ASCII payload to token usage: decode_ASCII [payload]\ntype - shows the type of a token usage: type [token]\nflags - shows flags of a token usage: flags [token]\nchecksum - shows checksum of a token usage: checksum [token]\npayload - shows payload of a token usage: payload [token]\nforward - forwards a signal usage: forward [id]\njam - jams signal usage: jam[id]\nverify - verifies checksum of a token usage: verify [token]",
   about:
     "Your a cybersecurity agent getting signals from an unknown source, your mission is to decipher and handle them.",
   scan: "",
@@ -64,7 +65,6 @@ function outputline(text, preserveNewlines = false) {
   return out;
 }
 
-
 // checks if player made it to the end
 function checkbinary() {
   const allEmpty = Object.values(binary).every((v) => !v);
@@ -113,6 +113,7 @@ function binaryAgent(str) {
 
 // convert ascii to token command
 function asciiToToken(payload) {
+  decode_ASCII_tutorial();
   const sourceMatch = payload.match(/SRC(\d+)/);
   if (!sourceMatch) return "Invalid payload format";
   const key = parseInt(sourceMatch[1], 10);
@@ -258,7 +259,8 @@ function help_tutorial() {
   para.style.borderRight = ".15em solid green";
   document.getElementById("body").appendChild(para);
   para.style.animation =
-    "typing5 3s steps(40, end) forwards, blink-caret 3s steps(1, end) 1 forwards";
+    "typing5 3s steps(61, end) forwards, blink-caret 3s steps(1, end) 1 forwards";
+
   para.addEventListener("animationend", function handler(e) {
     if (e.animationName === "typing5") {
       const paraTwo = document.createElement("p");
@@ -272,7 +274,7 @@ function help_tutorial() {
       paraTwo.style.borderRight = ".15em solid green";
       document.getElementById("body").appendChild(paraTwo);
       paraTwo.style.animation =
-        "typing6 3s steps(40, end) forwards, blink-caret 3s steps(1, end) 1 forwards";
+        "typing6 3s steps(57, end) forwards, blink-caret 3s steps(1, end) 1 forwards";
       para.removeEventListener("animationend", handler);
     }
   });
@@ -292,15 +294,16 @@ function scan_tutorial() {
   para.style.borderRight = ".15em solid green";
   document.getElementById("body").appendChild(para);
   para.style.animation =
-    "typing7 5s steps(60, end) forwards, blink-caret 5s steps(1, end) 1 forwards";
+    "typing7 5s steps(140, end) forwards, blink-caret 5s steps(1, end) 1 forwards";
 }
 
-function decode_binary_tutorial() { 
+function decode_binary_tutorial() {
   if (decode_binary_tutorial_done) return;
   decode_binary_tutorial_done = true;
   const para = document.createElement("p");
   para.id = "eight";
-  para.textContent = "Nice, now that we have the ascii payload, we need to conver it to a token using the [decode_ASCII] command followed by the ascii payload";
+  para.textContent =
+    "Nice, now that we have the ascii payload, we need to convert it to a token using the [decode_ASCII] command followed by the ascii payload";
   para.style.overflow = "hidden";
   para.style.whiteSpace = "nowrap";
   para.style.display = "block";
@@ -308,7 +311,70 @@ function decode_binary_tutorial() {
   para.style.borderRight = ".15em solid green";
   document.getElementById("body").appendChild(para);
   para.style.animation =
-    "typing8 5s steps(60, end) forwards, blink-caret 5s steps(1, end) 1 forwards";
+    "typing8 5s steps(125, end) forwards, blink-caret 5s steps(1, end) 1 forwards";
+}
+
+function decode_ASCII_tutorial() {
+  if (decode_ASCII_tutorial_done) return;
+  decode_ASCII_tutorial_done = true;
+  const para = document.createElement("p");
+  para.id = "nine";
+  para.textContent =
+    "Great! now that we have the token, we can start analyzing it using the various commands available such as [type], [flags], [checksum], and [payload]";
+  para.style.overflow = "hidden";
+  para.style.whiteSpace = "nowrap";
+  para.style.display = "block";
+  para.style.width = "0";
+  para.style.borderRight = ".15em solid green";
+  document.getElementById("body").appendChild(para);
+  para.style.animation =
+    "typing9 5s steps(129, end) forwards, blink-caret 5s steps(1, end) 1 forwards";
+
+  para.addEventListener("animationend", function handler(e) {
+    if (e.animationName === "typing9") {
+      const paraTwo = document.createElement("p");
+      paraTwo.id = "ten";
+      paraTwo.textContent =
+        "Based on the analysis, decide whether to [jam] or [forward] the signal. Remember, jamming malicious signals earns you points.";
+      paraTwo.style.overflow = "hidden";
+      paraTwo.style.whiteSpace = "nowrap";
+      paraTwo.style.display = "block";
+      paraTwo.style.width = "0";
+      paraTwo.style.borderRight = ".15em solid green";
+      document.getElementById("body").appendChild(paraTwo);
+      paraTwo.style.animation =
+        "typing10 7s steps(125, end) forwards, blink-caret 7s steps(1, end) 1 forwards";
+
+      para.removeEventListener("animationend", handler);
+
+      paraTwo.addEventListener("animationend", function handler2(e) {
+        if (e.animationName === "typing10") {
+          const paraThree = document.createElement("p");
+          paraThree.id = "eleven";
+          paraThree.textContent =
+            "If you forget any command at any point you can just type help. Good, luck!";
+          paraThree.style.overflow = "hidden";
+          paraThree.style.whiteSpace = "nowrap";
+          paraThree.style.display = "block";
+          paraThree.style.width = "0";
+          paraThree.style.borderRight = ".15em solid green";
+          document.getElementById("body").appendChild(paraThree);
+          paraThree.style.animation =
+            "typing11 3s steps(75, end) forwards, blink-caret 3s steps(1, end) 1 forwards";
+
+          paraTwo.removeEventListener("animationend", handler2);
+
+          paraThree.addEventListener("animationend", function handler3(e) {
+            if (e.animationName === "typing11") {
+              setTimeout(() => {
+                window.location.href = "index.html";
+              }, 3000);
+            }
+          });
+        }
+      });
+    }
+  });
 }
 
 // main stuff that handels command input
@@ -316,19 +382,19 @@ function handle(command, container, inputParent) {
   const parts = command.split(" ");
   const cmd = parts[0];
   const args = parts.slice(1).join(" ");
-if (cmd === "clear") {
-  container.innerHTML = "";
-  const newPrompt = promptline();
-  container.appendChild(newPrompt);
-  newPrompt.querySelector("input").focus();
-} else if (commands[cmd]) {
-  if (cmd === "help") {
-    console.log("help");
-    help_tutorial();
-    container.insertBefore(outputline(commands[cmd], true), inputParent);
-  } else {
-    container.insertBefore(outputline(commands[cmd], true), inputParent);
-  }
+  if (cmd === "clear") {
+    container.innerHTML = "";
+    const newPrompt = promptline();
+    container.appendChild(newPrompt);
+    newPrompt.querySelector("input").focus();
+  } else if (commands[cmd]) {
+    if (cmd === "help") {
+      console.log("help");
+      help_tutorial();
+      container.insertBefore(outputline(commands[cmd], true), inputParent);
+    } else {
+      container.insertBefore(outputline(commands[cmd], true), inputParent);
+    }
   } else if (cmd === "scan") scan(container, inputParent);
   else if (cmd === "decode_binary") {
     if (args)
