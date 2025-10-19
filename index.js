@@ -306,7 +306,10 @@ function handle(command, container, inputParent) {
     if (args) container.insertBefore(outputline(verify(args)), inputParent);
     else
       container.insertBefore(outputline("Usage: verify [token]"), inputParent);
-  } else if (command !== "")
+  } else if (cmd === "whoami") {
+    container.insertBefore(outputline(name), inputParent);
+  } 
+  else if (command !== "")
     container.insertBefore(
       outputline(`Unknown command: ${command}`),
       inputParent
