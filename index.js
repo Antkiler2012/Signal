@@ -352,7 +352,10 @@ function handle(command, container, inputParent) {
     container.insertBefore(outputline(date), inputParent);
   } else if (command === "history") {
     container.insertBefore(outputline(history.join(""), true), inputParent);
-  } else if (command !== "")
+  } else if (command === "exit") {
+        window.location.href = "index.html";
+  } 
+  else if (command !== "")
     container.insertBefore(
       outputline(`Unknown command: ${command}`),
       inputParent
